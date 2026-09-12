@@ -1,0 +1,209 @@
+{
+  "info": {
+    "name": "Smart Parking Spot Finder",
+    "description": "Parking Spot, Zone, and Booking services for the smart parking microservice (localhost:8080).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Parking Spot Service",
+      "item": [
+        {
+          "name": "Add Spot",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spotNumber\": \"C1\",\n  \"zone\": \"Zone C\",\n  \"vehicleType\": \"EV\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/spots", "host": ["{{baseUrl}}"], "path": ["api", "spots"] }
+          }
+        },
+        {
+          "name": "Add Spot - Invalid (blank spotNumber)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spotNumber\": \"\",\n  \"zone\": \"\",\n  \"vehicleType\": \"\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/spots", "host": ["{{baseUrl}}"], "path": ["api", "spots"] }
+          }
+        },
+        {
+          "name": "View All Spots",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/spots", "host": ["{{baseUrl}}"], "path": ["api", "spots"] }
+          }
+        },
+        {
+          "name": "View Spot By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/spots/1", "host": ["{{baseUrl}}"], "path": ["api", "spots", "1"] }
+          }
+        },
+        {
+          "name": "View Spot By Id - Not Found",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/spots/999", "host": ["{{baseUrl}}"], "path": ["api", "spots", "999"] }
+          }
+        },
+        {
+          "name": "Update Spot",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spotNumber\": \"A1\",\n  \"zone\": \"Zone A - Updated\",\n  \"vehicleType\": \"CAR\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/spots/1", "host": ["{{baseUrl}}"], "path": ["api", "spots", "1"] }
+          }
+        },
+        {
+          "name": "Update Spot - Not Found",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"spotNumber\": \"Z1\",\n  \"zone\": \"Zone Z\",\n  \"vehicleType\": \"CAR\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/spots/999", "host": ["{{baseUrl}}"], "path": ["api", "spots", "999"] }
+          }
+        },
+        {
+          "name": "Delete Spot",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/spots/3", "host": ["{{baseUrl}}"], "path": ["api", "spots", "3"] }
+          }
+        },
+        {
+          "name": "Delete Spot - Not Found",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/spots/999", "host": ["{{baseUrl}}"], "path": ["api", "spots", "999"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Zone Service",
+      "item": [
+        {
+          "name": "Add Zone",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Zone C\",\n  \"description\": \"Rooftop level, EV charging points\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/zones", "host": ["{{baseUrl}}"], "path": ["api", "zones"] }
+          }
+        },
+        {
+          "name": "Add Zone - Invalid (blank name)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"description\": \"\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/zones", "host": ["{{baseUrl}}"], "path": ["api", "zones"] }
+          }
+        },
+        {
+          "name": "View All Zones",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/zones", "host": ["{{baseUrl}}"], "path": ["api", "zones"] }
+          }
+        },
+        {
+          "name": "View Zone By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/zones/1", "host": ["{{baseUrl}}"], "path": ["api", "zones", "1"] }
+          }
+        },
+        {
+          "name": "Update Zone",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Zone A\",\n  \"description\": \"Ground floor, near main entrance - updated\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/zones/1", "host": ["{{baseUrl}}"], "path": ["api", "zones", "1"] }
+          }
+        },
+        {
+          "name": "Delete Zone",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/zones/2", "host": ["{{baseUrl}}"], "path": ["api", "zones", "2"] }
+          }
+        },
+        {
+          "name": "Delete Zone - Not Found",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/zones/999", "host": ["{{baseUrl}}"], "path": ["api", "zones", "999"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Booking Service",
+      "item": [
+        {
+          "name": "Book Spot",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/api/bookings/1/book", "host": ["{{baseUrl}}"], "path": ["api", "bookings", "1", "book"] }
+          }
+        },
+        {
+          "name": "Book Spot Again - Conflict (409)",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/api/bookings/1/book", "host": ["{{baseUrl}}"], "path": ["api", "bookings", "1", "book"] }
+          }
+        },
+        {
+          "name": "View Available Spots",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/bookings/available", "host": ["{{baseUrl}}"], "path": ["api", "bookings", "available"] }
+          }
+        },
+        {
+          "name": "Release Spot",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/api/bookings/1/release", "host": ["{{baseUrl}}"], "path": ["api", "bookings", "1", "release"] }
+          }
+        },
+        {
+          "name": "Release Spot Again - Conflict (409)",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/api/bookings/1/release", "host": ["{{baseUrl}}"], "path": ["api", "bookings", "1", "release"] }
+          }
+        }
+      ]
+    }
+  ]
+}
